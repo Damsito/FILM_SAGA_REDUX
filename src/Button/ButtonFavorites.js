@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {favoritesSlice} from "../app/FavoritesSlice";
+import {favoritesSlice} from "../app/slices";
 
 
 function ButtonFavorites({id}) {

@@ -12,12 +12,12 @@ const queryClient = new QueryClient()
 const rootElement = document.getElementById("root");
 
 render(
-    <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-            <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
                 <App />
-            </QueryClientProvider>
-        </PersistGate>
-    </Provider>,
+            </PersistGate>
+        </Provider>
+    </QueryClientProvider>,
     rootElement
 );
