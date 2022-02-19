@@ -13,7 +13,6 @@ async function httpClientOneMovie(url) {
 
 // worker Saga
  function* fetchMovies({value}) {
-    console.log("aeddeaadez")
     let movies = []
     if(!value){
         movies = yield call(
@@ -33,7 +32,6 @@ async function httpClientOneMovie(url) {
         httpClientOneMovie,
         `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}`
     );
-    console.log(movie)
     yield put(oneMovieSlice.actions.add({ movie }));
 }
 
@@ -42,7 +40,6 @@ async function httpClientOneMovie(url) {
     yield takeLatest("FETCH_MOVIES", fetchMovies);
 }
  function* watchOneMovie() {
-    console.log('in watch movie')
     yield takeLatest("FETCH_ONE_MOVIE", fetchOneMovie);
 }
 

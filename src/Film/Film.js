@@ -23,7 +23,6 @@ function Film() {
         return state.movie
     });
     if (!data) return <Navigate to="/" replace={true} />;
-    console.log(data.overview)
     return (
         <div className={"container p-5"}>
             <div className={"w-32 ml-auto"}>

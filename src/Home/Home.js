@@ -26,7 +26,6 @@ function Home() {
         dispatch({ type: "FETCH_MOVIES", value: filmQuery });
     }, [dispatch, filmQuery]);
     const movies = useSelector((state) => state.movies);
-    console.log(movies)
     return (
             <section className="overflow-hidden text-gray-700 ">
               <div className="container px-5 py-2 mx-auto lg:pt-12 lg:px-32">
