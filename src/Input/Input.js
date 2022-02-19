@@ -1,5 +1,5 @@
 import React from "react";
-function Input({ value, handleChange,submitButton }) {
+function Input({ value, handleChange, submitButton }) {
   return (
       <div className={'flex'}>
           <form className="w-full max-w-sm mb-1 ">
