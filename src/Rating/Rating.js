@@ -1,6 +1,7 @@
 import "./Rating.css";
 import FillStar from "./FillStar";
 import EmptyStar from "./EmptyStar";
+
 function Rating({ note }) {
   let noteBy5 = (parseInt(note.toString()) / 2).toFixed(1);
 
@@ -24,3 +25,7 @@ function Rating({ note }) {
   );
 }
 export default Rating;
+
+Rating.defaultProps = {
+    note: 0
+}
