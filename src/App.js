@@ -7,17 +7,16 @@ import Favorites from "./Favorites";
 
 export default function App() {
   return (
-      <BrowserRouter>
-          <Header />
-          <main>
-              <Routes>
-                  <Route exact path="/" element={<Home />} />
-                  <Route path="/films/:id" element={<Film />} />
-                  <Route path="/favorites" element={<Favorites />} />
-                  <Route path="*" element={<Home />} />
-              </Routes>
-          </main>
-      </BrowserRouter>
-
+    <BrowserRouter>
+      <Header />
+      <main>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/films/:id" element={<Film />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </main>
+    </BrowserRouter>
   );
 }

@@ -27,5 +27,5 @@ function Rating({ note }) {
 export default Rating;
 
 Rating.defaultProps = {
-    note: 0
-}
+  note: 0,
+};
