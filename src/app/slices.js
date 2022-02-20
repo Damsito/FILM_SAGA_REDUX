@@ -23,12 +23,22 @@ export const moviesSlice = createSlice({
         },
     },
 });
+export const similarMoviesSlice = createSlice({
+    name: "similar",
+    initialState: [],
+    reducers: {
+        add: (state, action) => {
+            return [
+                ...action.payload.similar
+            ]
+        },
+    },
+});
 export const oneMovieSlice = createSlice({
     name: "movie",
     initialState: [],
     reducers: {
         add: (state, action) => {
-
             return action.payload.movie
         },
     },

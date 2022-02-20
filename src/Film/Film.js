@@ -7,18 +7,13 @@ import Details from "../Details/Details";
 import Rating from "../Rating/Rating";
 import HorizontalList from "../HorizontalList/HorizontalList";
 
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-const OVERVIEW_SIZE = 120;
-
 function Film() {
-    const [expand, setExpand] = useState(false);
-    const toggle = () => setExpand(!expand);
+
     let { id } = useParams();
     const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch({ type: "FETCH_ONE_MOVIE", id });
-    }, [dispatch, id])
+    dispatch({ type: "FETCH_ONE_MOVIE", id });
     const data = useSelector((state) => {
         return state.movie
     });
@@ -36,22 +31,10 @@ function Film() {
                     <Details film={data} />
                 </div>
                 <p className={"mt-3"}>
-                    { data.overview.substring(
-                        0,
-                        expand ? data.overview.length - 1 : OVERVIEW_SIZE
-                    )}
-                    {!expand && data.overview.length > OVERVIEW_SIZE ? "..." : ""}
-                    {!expand && (
-                        <>
-                            <br />
-                            <button onClick={toggle}>
-                                Lire plus
-                            </button>
-                        </>
-                    )}
+                    {data.overview}
                 </p>
                 <Rating note={data.vote_average} />
-                <HorizontalList id={data.id} genres={data.genres} />
+                <HorizontalList id={id} />
             </>
         </div>
     )

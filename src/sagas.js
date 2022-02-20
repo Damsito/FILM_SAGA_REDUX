@@ -1,5 +1,5 @@
-import {all, call, put, takeLatest, takeEvery} from "redux-saga/effects";
-import {moviesSlice, oneMovieSlice} from "./app/slices";
+import {all, call, put, takeLatest} from "redux-saga/effects";
+import {moviesSlice, oneMovieSlice, similarMoviesSlice} from "./app/slices";
 
 async function httpClient(url) {
     const response = await fetch(url);
@@ -13,8 +13,8 @@ async function httpClientOneMovie(url) {
 
 // worker Saga
  function* fetchMovies({value}) {
-    let movies = []
-    if(!value){
+    let movies
+     if(!value){
         movies = yield call(
             httpClient,
             `${process.env.REACT_APP_API_URL}/movie/popular?api_key=${process.env.REACT_APP_API_KEY}`
@@ -34,6 +34,13 @@ async function httpClientOneMovie(url) {
     );
     yield put(oneMovieSlice.actions.add({ movie }));
 }
+function* fetchSimilarMovies({id}) {
+    let similar = yield call(
+        httpClient,
+        `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${process.env.REACT_APP_API_KEY}`
+    );
+    yield put(similarMoviesSlice.actions.add({ similar }));
+}
 
 // watcher Saga
  function* watchMovies() {
@@ -42,12 +49,16 @@ async function httpClientOneMovie(url) {
  function* watchOneMovie() {
     yield takeLatest("FETCH_ONE_MOVIE", fetchOneMovie);
 }
+function* watchSimilarMovies() {
+    yield takeLatest("FETCH_SIMILAR_MOVIES", fetchSimilarMovies);
+}
 
 // root Saga
 export function* rootSaga() {
     yield all([
         watchOneMovie(),
-        watchMovies()
+        watchMovies(),
+        watchSimilarMovies()
     ])
 
 }
